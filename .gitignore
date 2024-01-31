@@ -10,6 +10,7 @@
 *.fdb_latexmk
 
 # SyncTeX
+*.synctex(busy)
 *.synctex.gz
 
 # LaTeX Beamer
