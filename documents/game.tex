@@ -9,14 +9,17 @@
 \foreach \X in {0,...,\calc{\gridX-1}}{
     \foreach \Y in {0,...,\calc{\gridY-1}}{
         \cslide{
+            % \pgfmathparse{int(1+\X)}
+            % \pgfmathresult
             % \gameSlide{\X}{\Y}
+            \edef\x{\X} \edef\y{Y}
             \slideLink{\X}{\Y}
             
-            \level{\X}{\Y}
+            \level %{\X}{\Y}
 
             \vspace{0.2cm}
 
-            \controller{\X}{\Y}
+            \controller %{\X}{\Y}
         }
     }
 }
