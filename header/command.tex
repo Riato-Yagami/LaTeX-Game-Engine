@@ -153,6 +153,8 @@
 \newcommand{\newX}[1]{
     \ifnum \theloop = 1
         \loopValue{\ncalc{\x+#1}}{0}{\ncalc{\gridX-1}}%
+    \else
+        \boundValue{\ncalc{\x+#1}}{0}{\ncalc{\gridX-1}}%
     \fi
 }
 
