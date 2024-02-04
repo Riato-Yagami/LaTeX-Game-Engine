@@ -15,3 +15,19 @@
     % \resultVal%
     % \theelemPos
 }
+
+\newcounter{size}
+\newcommand{\listSize}[1]{%
+    \setcounter{size}{0}%
+    \foreach \n in #1{\stepcounter{size}}
+    % \thesize%
+}
+
+\newcommand{\setWalls}[4]{
+    \xdef\walls{{#1,#2}}
+    \foreach \X in {#1,...,#3}{
+        \foreach \Y in {#2,...,#4}{
+            \xdef\walls{\walls,{\X,\Y}}
+        }
+    }
+}

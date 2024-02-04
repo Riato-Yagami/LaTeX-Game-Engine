@@ -1,19 +1,58 @@
-\def\gridX{4}
-\def\gridY{4}
-\def\spawn{0,0}
+\def\emptyWorld{}
 
-\def\goal{3,3}
+\xdef\gridX{1}
+\xdef\gridY{1}
 
-\def\longWalls{{0,0,3,0}}
-\def\walls{{1,1}%
-% ,{0,2},{5,4},{6,4}%
+\xdef\spikes{}
+\xdef\walls{}
+
+\newcounter{toricWorld}
+\setcounter{toricWorld}{0}
+
+\xdef\spawn{0,0}
+\xdef\goal{0,0}
+
+% \def\longWalls{{0,0,3,0}}
+\def\worlds{\emptyWorld}
+
+\def\lvla{
+    \xdef\gridX{4}
+    \xdef\gridY{5}
+
+    \xdef\spawn{1,0}
+
+    \xdef\goal{2,4}
+
+    \def\worlds{
+        \xdef\spikes{{0,3},{1,3}},%
+        \xdef\spikes{{1,3},{2,3}},%
+        \xdef\spikes{{2,3},{3,3}},%
+        \xdef\spikes{{3,3},{0,3}}%
+    }
+    
+    \xdef\walls{{1,1},{2,1}%
+    % ,{0,2},{5,4},{6,4}%
+    }
 }
 
-\newcounter{loop}
-\setcounter{loop}{0}
+\def\lvlb{
+    \setcounter{toricWorld}{1}
+    \xdef\gridX{8}
+    \xdef\gridY{5}
 
-\newcounter{showGrid}
-% \newboolean{showGrid}
-% \setboolean{showGrid}{true}
-% \newboolean{loop}
-% \setboolean{loop}{true}
+    \xdef\spawn{1,2}
+
+    \xdef\goal{6,2}
+
+    \setWalls{3}{0}{4}{4}
+    % \def\worlds{
+    %     \xdef\spikes{{0,3},{1,3}},%
+    %     \xdef\spikes{{1,3},{2,3}},%
+    %     \xdef\spikes{{2,3},{3,3}},%
+    %     \xdef\spikes{{3,3},{0,3}}%
+    % }
+
+    % \xdef\walls{{1,1},{2,1}%
+    % % ,{0,2},{5,4},{6,4}%
+    % }
+}

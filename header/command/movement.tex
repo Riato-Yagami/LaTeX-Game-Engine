@@ -19,43 +19,79 @@
     \edef\x{\theelement}
     \listElement{\spawn}{1}
     \edef\y{\theelement}
+    % \setcounter{world}{0}
 }
 
-\newcommand{\tryWin}{
-    \listElement{\goal}{0}
+\newcounter{lose}
+\newcommand{\tryLose}{%
+    \setcounter{lose}{0}%
+    \tryDeathTrap%
+    \setcounter{lose}{\thedeathTrap}%
+}
+
+\newcounter{deathTrap}
+\newcommand{\tryDeathTrap}{%
+    \setcounter{deathTrap}{0}%
+    \foreach \spike in \spikes{%
+        \listElement{\spike}{0}%
+        % \theelement
+        \ifnum \theelement = \x
+            \listElement{\spike}{1}%
+            \ifnum \theelement = \y
+                \setcounter{deathTrap}{1}%
+            \fi
+        \fi
+    }%
+}
+
+\newcounter{win}
+\newcommand{\tryWin}{%
+    \setcounter{win}{0}%
+    \listElement{\goal}{0}%
     \ifnum \x = \theelement
-        \listElement{\goal}{1}
+        \listElement{\goal}{1}%
         \ifnum \y = \theelement
-            win
+            \setcounter{win}{1}%
         \fi
     \fi
 }
 
-\newcommand{\tryMove}[2]{%
-    % \tryWall{#1}{#2}%
+\newcommand{\tryMove}[3]{%
     \ifnum \thenoWall = 1
-        \move{#1}{#2}%
+        \move{#1}{#2}{#3}%
     \else
-        \move{0}{0}%
+        \move{0}{0}{#3}%
     \fi
 }
+% \newcommand{\tryMove}[2]{%
+%     % \tryWall{#1}{#2}%
+%     \ifnum \thenoWall = 1
+%         \move{#1}{#2}{\theworld}%
+%     \else
+%         \move{0}{0}{\theworld}%
+%     \fi
+% }
 
-\newcommand{\newX}[1]{
-    \ifnum \theloop = 1
+\newcommand{\newX}[1]{%
+    \ifnum \thetoricWorld = 1
         \loopValue{\ncalc{\x+#1}}{0}{\ncalc{\gridX-1}}%
     \else
         \boundValue{\ncalc{\x+#1}}{0}{\ncalc{\gridX-1}}%
     \fi
 }
 
-\newcommand{\newY}[1]{
-    \ifnum \theloop = 1
+\newcommand{\newY}[1]{%
+    \ifnum \thetoricWorld = 1
         \loopValue{\ncalc{\y+#1}}{0}{\ncalc{\gridY-1}}%
     \else
         \boundValue{\ncalc{\y+#1}}{0}{\ncalc{\gridY-1}}%
     \fi
 }
 
-\newcommand{\move}[2]{%
-    \newX{#1};\newY{#2}%
+\newcommand{\newWorld}[1]{%
+    \loopValue{\ncalc{\theworld+#1}}{0}{\ncalc{\theworldCount-1}}%
+}
+
+\newcommand{\move}[3]{%
+    \newX{#1};\newY{#2};\newWorld{#3}%
 }

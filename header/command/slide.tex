@@ -21,28 +21,41 @@
 
 \newcommand{\slideLink}[2]{
     \def\x{#1}\def\y{#2}
-    \def\coordonates{\tryMove{0}{0}}
+    \def\coordonates{\tryMove{0}{0}{0}}
     % \coordonates
     \hypertarget{\coordonates}{}
 }
 
-\newcommand{\moveButton}[3]{%
+\newcommand{\moveButton}[4]{%
     \tryWall{#1}{#2}%
-    \button{\tryMove{#1}{#2}}{$#3$}%
+    % \getWorld{#3}
+    \button{\tryMove{#1}{#2}{#3}}{$#4$}%
+}
+
+\newcommand{\lose}{
+    \tryLose
+    \ifnum \thelose = 1
+        \textit{game over...}\\%
+        \setSpawn%
+        \moveButton{0}{0}{0}{Retry}%
+    \fi
 }
 
 \newcommand{\win}{
     \tryWin
+    \ifnum \thewin = 1
+        win
+    \fi
 }
 
 \newcommand{\controller}{
     \setlength{\tabcolsep}{-5.4pt} % Default value: 6pt
     \renewcommand{\arraystretch}{0} % Default value: 1
     \begin{tabular}{c c c}
-        & \moveButton{0}{1}{\uparrow} \\
-        \moveButton{-1}{0}{\leftarrow}
-        & \moveButton{0}{-1}{\downarrow}
-        & \moveButton{1}{0}{\rightarrow}
+        & \moveButton{0}{1}{1}{\uparrow} \\
+        \moveButton{-1}{0}{1}{\leftarrow}
+        & \moveButton{0}{-1}{1}{\downarrow}
+        & \moveButton{1}{0}{1}{\rightarrow}
     \end{tabular}
 }
 

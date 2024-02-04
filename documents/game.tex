@@ -1,26 +1,45 @@
+\newcounter{world}
+\newcounter{worldCount}
+
 \cslide{
     \LaTeX{} Game Engine
-    \transduration{2}
-}
-
-\cslide{
+    \lvlb
+    % \transduration{2}
     \setSpawn
-    \moveButton{0}{0}{Start}
+    \moveButton{0}{0}{0}{Start}
+    \listSize{\worlds}
+    \setcounter{worldCount}{\thesize}
 }
 
-\foreach \X in {0,...,\calc{\gridX-1}}{
-    \foreach \Y in {0,...,\calc{\gridY-1}}{
-        \cslide{
-            \edef\x{\X} \edef\y{Y}
-            \slideLink{\X}{\Y}
+% \cslide{
+%     \setSpawn
+%     \moveButton{0}{0}{0}{Start}
+%     \listSize{\worlds}
+%     \setcounter{worldCount}{\thesize}
+% }
 
-            \level %{\X}{\Y}
+\foreach \world in \worlds{
+    \world
+    \foreach \X in {0,...,\calc{\gridX-1}}{
+        \foreach \Y in {0,...,\calc{\gridY-1}}{
+            \cslide{
+                \edef\x{\X} \edef\y{Y}
+                \slideLink{\X}{\Y}
 
-            \vspace{0.2cm}
+                \level
 
-            \controller %{\X}{\Y}
+                \vspace{0.2cm}
 
-            \win
+                \lose
+
+                \ifnum \thelose = 0
+                    \win
+                    \ifnum \thewin = 0
+                        \controller
+                    \fi
+                \fi
+            }
         }
     }
+    \stepcounter{world}
 }

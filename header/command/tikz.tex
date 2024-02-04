@@ -6,7 +6,11 @@
 }
 
 \newcommand{\drawBorder}[3]{
-    \draw[line width = #3] (0,0) -- (#1,0) -- (#1,#2) -- (0,#2) -- cycle;
+    \ifnum \thetoricWorld = 1
+        \draw[line width = #3, dashed] (0,0) -- (#1,0) -- (#1,#2) -- (0,#2) -- cycle;
+    \else
+        \draw[line width = #3] (0,0) -- (#1,0) -- (#1,#2) -- (0,#2) -- cycle;
+    \fi
 }
 
 \newcommand{\drawSquare}[4]{ % 1 Offset - 2 Size - 3 Color - 4 Width
@@ -16,9 +20,10 @@
 \newcommand{\level}{
     \begin{tikzpicture}[scale=\tikzScale]
         \drawLevelGrid;
-        \drawCharacter;
         \drawWalls;
         \drawGoal;
+        \drawDeathTraps;
+        \drawCharacter;
     \end{tikzpicture}
 }
 
@@ -42,6 +47,12 @@
     % \node[shift={#1}] at (0,0) {\dash};
     \draw[line width = #3/1.2, color = RawSienna, shift={#1}, shift={(-0.05,-0.1)}] (0.5,0.6) -- (0.5,0.25) -- (0.4,0.25) -- (0.6,0.25);
     \draw[line width = #3, color = #2, shift={#1}, shift={(-0.05,-0.1)}] (0.5,0.95) -- (0.9,0.75) -- (0.5,0.55) -- cycle;
+}
+
+\newcommand{\drawSpikes}[3]{ % 1 Offset - 2 Color - 3 Width/Height
+    \draw[line width = #3, color = #2, shift={#1}, shift = {(0.15,0.05)}] (0,0) -- (0.1,0.2) -- (0.2,0);
+    \draw[line width = #3, color = #2, shift={#1}, shift = {(0.4,0.2)}] (0,0) -- (0.1,0.2) -- (0.2,0);
+    \draw[line width = #3, color = #2, shift={#1}, shift = {(0.65,0.05)}] (0,0) -- (0.1,0.2) -- (0.2,0);
 }
 
 \newcommand{\drawTree}[3]{ % 1 Offset - 2 Color - 3 Width/Height
@@ -89,6 +100,12 @@
 \newcommand{\drawWalls}{
     \foreach \wall in \walls{
         \drawTree{(\wall)}{\wallColor}{\wallWidth};
+    }
+}
+
+\newcommand{\drawDeathTraps}{
+    \foreach \spike in \spikes{
+        \drawSpikes{(\spike)}{\spikeColor}{\spikeWidth};
     }
 }
 
