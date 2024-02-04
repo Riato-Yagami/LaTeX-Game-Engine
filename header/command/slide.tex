@@ -1,0 +1,54 @@
+\newcommand{\slide}[2]{
+    \begin{frame}
+    \frametitle[#1]{#1}
+        #2
+    \end{frame}
+}
+
+\newcommand{\cslide}[1]{
+    \slide{}{\begin{center}#1\end{center}}
+}
+
+\NewDocumentCommand{\dividePage}{mm O{0.5}}{
+    \pgfmathparse{1-#3}
+    \begin{minipage}{#3\linewidth}
+        #1
+    \end{minipage}
+    \begin{minipage}{\pgfmathresult\linewidth}
+        #2
+    \end{minipage}
+}
+
+\newcommand{\slideLink}[2]{
+    \def\x{#1}\def\y{#2}
+    \def\coordonates{\tryMove{0}{0}}
+    % \coordonates
+    \hypertarget{\coordonates}{}
+}
+
+\newcommand{\moveButton}[3]{%
+    \tryWall{#1}{#2}%
+    \button{\tryMove{#1}{#2}}{$#3$}%
+}
+
+\newcommand{\win}{
+    \tryWin
+}
+
+\newcommand{\controller}{
+    \setlength{\tabcolsep}{-5.4pt} % Default value: 6pt
+    \renewcommand{\arraystretch}{0} % Default value: 1
+    \begin{tabular}{c c c}
+        & \moveButton{0}{1}{\uparrow} \\
+        \moveButton{-1}{0}{\leftarrow}
+        & \moveButton{0}{-1}{\downarrow}
+        & \moveButton{1}{0}{\rightarrow}
+    \end{tabular}
+}
+
+% \newcommand{\gameSlide}[2]{
+%     \def\x{#1}\def\y{#2}
+%     \level{\x}{\y}
+%     \slideLink{\x}{\y}
+%     \controller{\x}{\y}
+% }

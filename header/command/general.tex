@@ -1,0 +1,17 @@
+\newcounter{elemPos}
+\newcounter{element}
+\newcommand{\listElement}[2]{%
+    \setcounter{elemPos}{0}% Start counting from 0
+    \def\resultVal{0}% Default value
+    \renewcommand*{\do}[1]{%
+        \ifnumequal{\value{elemPos}}{#2}{%
+            \edef\resultVal{##1}%
+            \listbreak% Break out of the loop
+        }{}%
+        \stepcounter{elemPos}%
+    }%
+    \expandafter\docsvlist\expandafter{#1}% Expand the list before passing it to \docsvlist
+    \setcounter{element}{\resultVal}%
+    % \resultVal%
+    % \theelemPos
+}

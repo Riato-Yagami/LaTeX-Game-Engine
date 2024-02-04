@@ -1,0 +1,103 @@
+\newcommand{\drawGrid}[3]{
+    \foreach \n in {0,...,#1}
+        \draw[line width = #3] (\n,0) -- (\n,#2);
+    \foreach \n in {0,...,#2}
+        \draw[line width = #3] (0,\n) -- (#1,\n);
+}
+
+\newcommand{\drawBorder}[3]{
+    \draw[line width = #3] (0,0) -- (#1,0) -- (#1,#2) -- (0,#2) -- cycle;
+}
+
+\newcommand{\drawSquare}[4]{ % 1 Offset - 2 Size - 3 Color - 4 Width
+    \draw[line width = #4, color = #3, shift={#1}] (0,0) -- (0,#2) -- (#2,#2) -- (#2,0) -- cycle;
+}
+
+\newcommand{\level}{
+    \begin{tikzpicture}[scale=\tikzScale]
+        \drawLevelGrid;
+        \drawCharacter;
+        \drawWalls;
+        \drawGoal;
+    \end{tikzpicture}
+}
+
+\newcommand{\drawLevelGrid}{
+    \ifnum \theshowGrid = 1
+        \drawGrid{\gridX}{\gridY}{\gridWidth};%
+    \fi
+    \drawBorder{\gridX}{\gridY}{\borderWidth};
+}
+
+\newcommand{\drawCharacter}{
+    % \drawSquare{(\x,\y)}{1}{\characterColor}{\characterWidth};
+    \drawWalkingCharacter{(\x,\y)}{\characterColor}{\characterWidth};
+}
+
+\newcommand{\drawGoal}{
+    \drawFlag{(\goal)}{\goalColor}{\goalWidth};
+}
+
+\newcommand{\drawFlag}[3]{ % 1 Offset - 2 Color - 3 Width
+    % \node[shift={#1}] at (0,0) {\dash};
+    \draw[line width = #3/1.2, color = RawSienna, shift={#1}, shift={(-0.05,-0.1)}] (0.5,0.6) -- (0.5,0.25) -- (0.4,0.25) -- (0.6,0.25);
+    \draw[line width = #3, color = #2, shift={#1}, shift={(-0.05,-0.1)}] (0.5,0.95) -- (0.9,0.75) -- (0.5,0.55) -- cycle;
+}
+
+\newcommand{\drawTree}[3]{ % 1 Offset - 2 Color - 3 Width/Height
+    % Trunk of the tree
+    \draw[line width = #3, color = RawSienna, shift={#1}] (0.5,0.5) -- (0.5,0.1);
+    
+    % Foliage of the tree (Three ellipses representing the foliage)
+    \draw[line width = #3, color = #2, shift={#1}] (0.5,0.7) circle (0.2);
+    \draw[line width = #3, color = #2, shift={#1}] (0.7,0.5) circle (0.2);
+    \draw[line width = #3, color = #2, shift={#1}] (0.3,0.5) circle (0.2);
+}
+
+\newcommand{\drawWalkingCharacter}[3]{ % 1 Offset - 2 Color - 3 Size
+    \isEven{\ncalc{\x-\y}}
+    \ifnum \theisEven = 1
+        \def\behindArm{(0.7, 0.35)}
+        \def\beforeArm{(0.3, 0.35)}
+        \def\behindLeg{(0.4, 0.1)}
+        \def\beforeLeg{(0.6, 0.1)}
+    \else
+        \def\behindArm{(0.3, 0.35)}
+        \def\beforeArm{(0.7, 0.35)}
+        \def\behindLeg{(0.6, 0.1)}
+        \def\beforeLeg{(0.4, 0.1)}
+    \fi
+    % Behind Arm
+    \draw[line width = #3, color = #2!20!black, shift={#1}] (0.5,0.5) -- \behindArm;
+    
+    % Behind Leg
+    \draw[line width = #3, color = #2!20!black, shift={#1}] (0.48,0.2) -- \behindLeg;
+
+    % Head
+    \draw[line width = #3, color = #2, shift={#1}] (0.5,0.7) circle (0.1);
+    
+    % Body
+    \draw[line width = #3, color = #2, shift={#1}] (0.5,0.35) ellipse (0.07 and 0.15);
+    
+    % Before Arm
+    \draw[line width = #3, color = #2, shift={#1}] (0.5,0.5) -- \beforeArm;
+    
+    % Before Leg
+    \draw[line width = #3, color = #2, shift={#1}] (0.52,0.2) -- \beforeLeg;
+}
+
+\newcommand{\drawWalls}{
+    \foreach \wall in \walls{
+        \drawTree{(\wall)}{\wallColor}{\wallWidth};
+    }
+}
+
+\newcommand{\button}[2]{%
+    \def\link{#1}%
+    \hyperlink{\link}{
+        \begin{tikzpicture}
+            \drawSquare{(0,0)}{1}{Blue}{\buttonWidth};
+            \node at (0.5,0.5) {#2};
+        \end{tikzpicture}
+    }
+}

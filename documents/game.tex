@@ -1,26 +1,26 @@
 \cslide{
     \LaTeX{} Game Engine
+    \transduration{2}
 }
 
 \cslide{
-    \edef\x{0} \edef\y{0}
-    \moveButton{3}{4}{Start}
+    \setSpawn
+    \moveButton{0}{0}{Start}
 }
 
 \foreach \X in {0,...,\calc{\gridX-1}}{
     \foreach \Y in {0,...,\calc{\gridY-1}}{
         \cslide{
-            % \pgfmathparse{int(1+\X)}
-            % \pgfmathresult
-            % \gameSlide{\X}{\Y}
             \edef\x{\X} \edef\y{Y}
             \slideLink{\X}{\Y}
-            
+
             \level %{\X}{\Y}
 
             \vspace{0.2cm}
 
             \controller %{\X}{\Y}
+
+            \win
         }
     }
 }

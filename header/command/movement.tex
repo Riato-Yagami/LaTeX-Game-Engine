@@ -1,0 +1,61 @@
+\newcounter{noWall}
+\newcommand{\tryWall}[2]{%
+    \setcounter{noWall}{1}%
+    \foreach \wall in \walls{%
+        \listElement{\wall}{0}%
+        % \theelement
+        \ifnum \theelement = \newX{#1}
+            \listElement{\wall}{1}%
+            \ifnum \theelement = \newY{#2}
+                \setcounter{noWall}{0}%
+            \fi
+        \fi
+    }%
+    % \thetrue%
+}
+
+\newcommand{\setSpawn}{
+    \listElement{\spawn}{0}
+    \edef\x{\theelement}
+    \listElement{\spawn}{1}
+    \edef\y{\theelement}
+}
+
+\newcommand{\tryWin}{
+    \listElement{\goal}{0}
+    \ifnum \x = \theelement
+        \listElement{\goal}{1}
+        \ifnum \y = \theelement
+            win
+        \fi
+    \fi
+}
+
+\newcommand{\tryMove}[2]{%
+    % \tryWall{#1}{#2}%
+    \ifnum \thenoWall = 1
+        \move{#1}{#2}%
+    \else
+        \move{0}{0}%
+    \fi
+}
+
+\newcommand{\newX}[1]{
+    \ifnum \theloop = 1
+        \loopValue{\ncalc{\x+#1}}{0}{\ncalc{\gridX-1}}%
+    \else
+        \boundValue{\ncalc{\x+#1}}{0}{\ncalc{\gridX-1}}%
+    \fi
+}
+
+\newcommand{\newY}[1]{
+    \ifnum \theloop = 1
+        \loopValue{\ncalc{\y+#1}}{0}{\ncalc{\gridY-1}}%
+    \else
+        \boundValue{\ncalc{\y+#1}}{0}{\ncalc{\gridY-1}}%
+    \fi
+}
+
+\newcommand{\move}[2]{%
+    \newX{#1};\newY{#2}%
+}
