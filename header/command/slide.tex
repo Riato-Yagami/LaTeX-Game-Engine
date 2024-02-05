@@ -34,9 +34,10 @@
 
 \newcommand{\lose}{
     \tryLose
-    \ifnum \thelose = 1
-        \textit{game over...}\\%
+    \ifnum \theres = 1
         \setSpawn%
+        \textit{You died...}\\%
+        \vspace*{0.4cm}%
         \moveButton{0}{0}{0}{Retry}%
     \fi
 }
@@ -44,7 +45,10 @@
 \newcommand{\win}{
     \tryWin
     \ifnum \theres = 1
-        win
+        \textit{You Win !}\\%
+        \vspace*{0.4cm}%
+        \levelButton{\ncalc{\thelevel+2}}
+        % \href{run:./level_\ncalc{\thelevel+1}.pdf}{Open this PDF}
     \fi
 }
 

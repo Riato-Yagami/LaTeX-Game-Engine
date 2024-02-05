@@ -1,3 +1,8 @@
+\newcounter{res}
+\setcounter{res}{0}
+
+\xdef\res{}
+
 \def\emptyWorld{}
 
 \xdef\gridX{1}
@@ -12,47 +17,16 @@
 \xdef\spawn{0,0}
 \xdef\goal{0,0}
 
-% \def\longWalls{{0,0,3,0}}
 \def\worlds{\emptyWorld}
 
-\def\lvla{
-    \xdef\gridX{4}
-    \xdef\gridY{5}
+\newcounter{level}
+\setcounter{level}{0}
 
-    \xdef\spawn{1,0}
+\newcounter{levelCount}
+\setcounter{levelCount}{0}
 
-    \xdef\goal{2,4}
+\newcounter{world}
+\setcounter{world}{0}
 
-    \def\worlds{
-        \xdef\spikes{{0,3},{1,3}},%
-        \xdef\spikes{{1,3},{2,3}},%
-        \xdef\spikes{{2,3},{3,3}},%
-        \xdef\spikes{{3,3},{0,3}}%
-    }
-    
-    \xdef\walls{{1,1},{2,1}%
-    % ,{0,2},{5,4},{6,4}%
-    }
-}
-
-\def\lvlb{
-    \setcounter{toricWorld}{1}
-    \xdef\gridX{8}
-    \xdef\gridY{5}
-
-    \xdef\spawn{1,2}
-
-    \xdef\goal{6,2}
-
-    \setWalls{3}{0}{4}{4}
-    % \def\worlds{
-    %     \xdef\spikes{{0,3},{1,3}},%
-    %     \xdef\spikes{{1,3},{2,3}},%
-    %     \xdef\spikes{{2,3},{3,3}},%
-    %     \xdef\spikes{{3,3},{0,3}}%
-    % }
-
-    % \xdef\walls{{1,1},{2,1}%
-    % % ,{0,2},{5,4},{6,4}%
-    % }
-}
+\newcounter{worldCount}
+\setcounter{worldCount}{0}

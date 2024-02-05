@@ -1,16 +1,19 @@
-\newcounter{world}
-\newcounter{worldCount}
+\listSize{\levels}
+\setcounter{levelCount}{\theres}
+\listElements{\levels}{\thelevel}
 
-\cslide{
-    \LaTeX{} Game Engine
-    \lvlb
-    % \transduration{2}
-    \setSpawn
-    \moveButton{0}{0}{0}{Start}
-    \listSize{\worlds}
-    \setcounter{worldCount}{\theres}
+\listSize{\worlds}
+\setcounter{worldCount}{\theres}
+
+\setSpawn
+
+\cslide{%
+    \Huge \LaTeX{} Game Engine\\%
+    \vspace*{0.4cm}%
+    \large Level \ncalc{\thelevel+1}\\%
+    \vspace*{0.4cm}%
+    \moveButton{0}{0}{0}{Start}%
 }
-
 % \cslide{
 %     \setSpawn
 %     \moveButton{0}{0}{0}{Start}
