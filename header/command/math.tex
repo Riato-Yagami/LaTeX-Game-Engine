@@ -34,10 +34,9 @@
     \fi
 }
 
-\newcounter{isEven}
 \newcommand{\isEven}[1]{
-    \setcounter{isEven}{0}
+    \setcounter{res}{0}
     \ifnum \ncalc{#1/2*2} = #1
-        \setcounter{isEven}{1}
+        \setcounter{res}{1}
     \fi
 }

@@ -1,5 +1,5 @@
 \newcounter{elemPos}
-\newcounter{element}
+\newcounter{res}
 \newcommand{\listElement}[2]{%
     \setcounter{elemPos}{0}% Start counting from 0
     \def\resultVal{0}% Default value
@@ -11,15 +11,12 @@
         \stepcounter{elemPos}%
     }%
     \expandafter\docsvlist\expandafter{#1}% Expand the list before passing it to \docsvlist
-    \setcounter{element}{\resultVal}%
-    % \resultVal%
-    % \theelemPos
+    \setcounter{res}{\resultVal}%
 }
 
-\newcounter{size}
 \newcommand{\listSize}[1]{%
-    \setcounter{size}{0}%
-    \foreach \n in #1{\stepcounter{size}}
+    \setcounter{res}{0}%
+    \foreach \n in #1{\stepcounter{res}}
     % \thesize%
 }
 

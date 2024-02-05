@@ -8,7 +8,7 @@
     \setSpawn
     \moveButton{0}{0}{0}{Start}
     \listSize{\worlds}
-    \setcounter{worldCount}{\thesize}
+    \setcounter{worldCount}{\theres}
 }
 
 % \cslide{
@@ -32,9 +32,9 @@
 
                 \lose
 
-                \ifnum \thelose = 0
+                \ifnum \theres = 0
                     \win
-                    \ifnum \thewin = 0
+                    \ifnum \theres = 0
                         \controller
                     \fi
                 \fi

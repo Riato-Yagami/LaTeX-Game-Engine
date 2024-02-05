@@ -3,22 +3,22 @@
     \setcounter{noWall}{1}%
     \foreach \wall in \walls{%
         \listElement{\wall}{0}%
-        % \theelement
-        \ifnum \theelement = \newX{#1}
+        % \theres
+        \ifnum \theres = \newX{#1}
             \listElement{\wall}{1}%
-            \ifnum \theelement = \newY{#2}
+            \ifnum \theres = \newY{#2}
                 \setcounter{noWall}{0}%
             \fi
         \fi
     }%
-    % \thetrue%
+    \setcounter{res}{\thenoWall}%
 }
 
 \newcommand{\setSpawn}{
     \listElement{\spawn}{0}
-    \edef\x{\theelement}
+    \edef\x{\theres}
     \listElement{\spawn}{1}
-    \edef\y{\theelement}
+    \edef\y{\theres}
     % \setcounter{world}{0}
 }
 
@@ -26,34 +26,36 @@
 \newcommand{\tryLose}{%
     \setcounter{lose}{0}%
     \tryDeathTrap%
-    \setcounter{lose}{\thedeathTrap}%
+    \setcounter{res}{\theres}%
 }
 
-\newcounter{deathTrap}
+\newcounter{deathTrap}%
 \newcommand{\tryDeathTrap}{%
     \setcounter{deathTrap}{0}%
     \foreach \spike in \spikes{%
         \listElement{\spike}{0}%
-        % \theelement
-        \ifnum \theelement = \x
+        % \theres
+        \ifnum \theres = \x
             \listElement{\spike}{1}%
-            \ifnum \theelement = \y
+            \ifnum \theres = \y
                 \setcounter{deathTrap}{1}%
             \fi
         \fi
     }%
+    \setcounter{res}{\thedeathTrap}%
 }
 
 \newcounter{win}
 \newcommand{\tryWin}{%
-    \setcounter{win}{0}%
+    \setcounter{win}{0}
     \listElement{\goal}{0}%
-    \ifnum \x = \theelement
+    \ifnum \x = \theres
         \listElement{\goal}{1}%
-        \ifnum \y = \theelement
+        \ifnum \y = \theres
             \setcounter{win}{1}%
         \fi
     \fi
+    \setcounter{res}{\thewin}%
 }
 
 \newcommand{\tryMove}[3]{%
