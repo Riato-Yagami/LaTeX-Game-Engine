@@ -1,6 +1,8 @@
+\defaultLevel
+
 \listSize{\levels}
 \setcounter{levelCount}{\theres}
-\listElements{\levels}{\thelevel}
+\execListElement{\levels}{\thelevel}
 
 \listSize{\worlds}
 \setcounter{worldCount}{\theres}
@@ -22,7 +24,10 @@
 % }
 
 \foreach \world in \worlds{
+    \defaultLevel
+    \execListElement{\levels}{\thelevel}
     \world
+    \setLongs
     \foreach \X in {0,...,\calc{\gridX-1}}{
         \foreach \Y in {0,...,\calc{\gridY-1}}{
             \cslide{

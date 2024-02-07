@@ -11,12 +11,27 @@
         \xdef\spikes{{3,3},{0,3}}%
     }%
     \xdef\walls{{1,1},{2,1}},%
+    %
     %LEVEL 2
     \setcounter{toricWorld}{1}%
     \xdef\gridX{8}%
     \xdef\gridY{5}%
     \xdef\spawn{1,2}%
     \xdef\goal{6,2}%
-    \setWalls{3}{0}{4}{4}%
+    \xdef\longWalls{{3,0,4,4}},%
+    %
+    %LEVEL 3
+    \xdef\gridX{4}%
+    \xdef\gridY{4}%
+    \xdef\goal{3,3}%
+    \def\worlds{%
+        \xdef\longSpikes{{5,-2,5,5},{-2,5,5,5}},%
+        \xdef\longSpikes{{4,-2,4,5},{-2,4,5,4}},%
+        \xdef\longSpikes{{3,-2,3,5},{-2,3,5,3}},%
+        \xdef\longSpikes{{2,-2,2,5},{-2,2,5,2}},%
+        \xdef\longSpikes{{1,-2,1,5},{-2,1,5,1}},%
+        \xdef\longSpikes{{0,-2,0,5},{-2,0,5,0}},%
+        \xdef\longSpikes{{-1,-2,-1,5},{-2,-1,5,-1}}%
+        \xdef\longSpikes{{-2,-2,-2,5},{-2,-2,5,-2}}%
+    }%
 }
-

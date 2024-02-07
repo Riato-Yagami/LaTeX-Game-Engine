@@ -3,21 +3,9 @@
 
 \xdef\res{}
 
-\def\emptyWorld{}
-
-\xdef\gridX{1}
-\xdef\gridY{1}
-
-\xdef\spikes{}
-\xdef\walls{}
+\def\emptyElement{}
 
 \newcounter{toricWorld}
-\setcounter{toricWorld}{0}
-
-\xdef\spawn{0,0}
-\xdef\goal{0,0}
-
-\def\worlds{\emptyWorld}
 
 \newcounter{level}
 \setcounter{level}{0}
@@ -30,3 +18,21 @@
 
 \newcounter{worldCount}
 \setcounter{worldCount}{0}
+
+\def\defaultLevel{%
+    \xdef\gridX{1}%
+    \xdef\gridY{1}%
+    %
+    \xdef\spikes{}%
+    \xdef\walls{}%
+    %
+    \setcounter{toricWorld}{0}%
+    %
+    \xdef\spawn{0,0}%
+    \xdef\goal{0,0}%
+    %
+    \def\worlds{\emptyElement}%
+    %
+    \xdef\longWalls{\emptyElement}%
+    \xdef\longSpikes{\emptyElement}%
+}
