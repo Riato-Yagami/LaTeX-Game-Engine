@@ -20,7 +20,7 @@
 \newcommand{\level}{
     \begin{tikzpicture}[scale=\tikzScale]
         \drawLevelGrid;
-        \drawWalls;
+        \drawTrees;
         \drawGoal;
         \drawDeathTraps;
         \drawCharacter;
@@ -97,9 +97,9 @@
     \draw[line width = #3, color = #2, shift={#1}] (0.52,0.2) -- \beforeLeg;
 }
 
-\newcommand{\drawWalls}{
-    \foreach \wall in \walls{
-        \drawTree{(\wall)}{\wallColor}{\wallWidth};
+\newcommand{\drawTrees}{
+    \foreach \tree in \trees{
+        \drawTree{(\tree)}{\treeColor}{\treeWidth};
     }
 }
 

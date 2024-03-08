@@ -10,7 +10,7 @@
         \xdef\spikes{{2,3},{3,3}},%
         \xdef\spikes{{3,3},{0,3}}%
     }%
-    \xdef\walls{{1,1},{2,1}},%
+    \xdef\trees{{1,1},{2,1}},%
     %
     %LEVEL 2
     \setcounter{toricWorld}{1}%
@@ -18,7 +18,7 @@
     \xdef\gridY{5}%
     \xdef\spawn{1,2}%
     \xdef\goal{6,2}%
-    \xdef\longWalls{{3,0,4,4}},%
+    \xdef\longTrees{{3,0,4,4}},%
     %
     %LEVEL 3
     \xdef\gridX{4}%
@@ -33,5 +33,48 @@
         \xdef\longSpikes{{0,-2,0,5},{-2,0,5,0}},%
         \xdef\longSpikes{{-1,-2,-1,5},{-2,-1,5,-1}}%
         \xdef\longSpikes{{-2,-2,-2,5},{-2,-2,5,-2}}%
-    }%
+    },%
+    %LEVEL 4
+    \def\worlds{%
+        \xdef\goal{4,4}%
+        \xdef\spawn{2,1}%
+        \xdef\gridX{6}%
+        \xdef\gridY{6},%
+        \xdef\gridX{3}%
+        \xdef\gridY{3}%
+    },%
+	% LEVEL 2
+	\xdef\gridX{6}%
+	\xdef\gridY{6}%
+	\xdef\spawn{2,1}%
+	\xdef\goal{4,4}%
+	\def\worlds{%
+		\xdef\gridX{6}%
+		\xdef\gridY{6}%
+		\xdef\spikes{{0,5},{1,4},{2,3},{3,2},{4,1},{5,0}},%
+		\xdef\gridX{6}%
+		\xdef\gridY{6}%
+		\xdef\spikes{{1,5},{2,4},{3,3},{4,2},{5,1}},%
+		\xdef\gridX{6}%
+		\xdef\gridY{6}%
+		\xdef\spikes{{2,5},{3,4},{4,3},{5,2}},%
+		\xdef\gridX{6}%
+		\xdef\gridY{6}%
+		\xdef\spikes{{3,5},{4,4},{5,3}},%
+		\xdef\gridX{6}%
+		\xdef\gridY{6}%
+		\xdef\spikes{{4,5},{5,4},{0,0}},%
+		\xdef\gridX{6}%
+		\xdef\gridY{6}%
+		\xdef\spikes{{5,5},{0,1},{1,0}},%
+		\xdef\gridX{6}%
+		\xdef\gridY{6}%
+		\xdef\spikes{{0,2},{1,1},{2,0}},%
+		\xdef\gridX{6}%
+		\xdef\gridY{6}%
+		\xdef\spikes{{0,3},{1,2},{2,1},{3,0}},%
+		\xdef\gridX{6}%
+		\xdef\gridY{6}%
+		\xdef\spikes{{0,4},{1,3},{2,2},{3,1},{4,0}}%
+	},%
 }

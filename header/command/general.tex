@@ -19,14 +19,14 @@
     % \thesize%
 }
 
-\newcommand{\setWalls}[4]{%
-    \listSize{\walls}%
+\newcommand{\setTrees}[4]{%
+    \listSize{\trees}%
     \ifnum \theres = 0
-        \xdef\walls{{#1,#2}}%
+        \xdef\trees{{#1,#2}}%
     \fi
     \foreach \X in {#1,...,#3}{%
         \foreach \Y in {#2,...,#4}{%
-            \xdef\walls{\walls,{\X,\Y}}%
+            \xdef\trees{\trees,{\X,\Y}}%
         }%
     }%
 }
@@ -61,17 +61,17 @@
 \newcounter{xe}%
 \newcounter{ye}%
 \newcommand{\setLongs}{%
-    \foreach \longWall in \longWalls{%
-        \listElement{\longWall}{0}%
+    \foreach \longTree in \longTrees{%
+        \listElement{\longTree}{0}%
         \setcounter{xs}{\theres}%
-        \listElement{\longWall}{1}%
+        \listElement{\longTree}{1}%
         \setcounter{ys}{\theres}%
-        \listElement{\longWall}{2}%
+        \listElement{\longTree}{2}%
         \setcounter{xe}{\theres}%
-        \listElement{\longWall}{3}%
+        \listElement{\longTree}{3}%
         \setcounter{ye}{\theres}%
         % \thexs
-        \setWalls{\thexs}{\theys}{\thexe}{\theye}%
+        \setTrees{\thexs}{\theys}{\thexe}{\theye}%
     }
 
     \foreach \longElement in \longSpikes{%

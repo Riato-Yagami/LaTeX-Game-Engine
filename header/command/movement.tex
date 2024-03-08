@@ -1,17 +1,17 @@
-\newcounter{noWall}
-\newcommand{\tryWall}[2]{%
-    \setcounter{noWall}{1}%
-    \foreach \wall in \walls{%
-        \listElement{\wall}{0}%
+\newcounter{noTree}
+\newcommand{\tryTree}[2]{%
+    \setcounter{noTree}{1}%
+    \foreach \tree in \trees{%
+        \listElement{\tree}{0}%
         % \theres
         \ifnum \theres = \newX{#1}
-            \listElement{\wall}{1}%
+            \listElement{\tree}{1}%
             \ifnum \theres = \newY{#2}
-                \setcounter{noWall}{0}%
+                \setcounter{noTree}{0}%
             \fi
         \fi
     }%
-    \setcounter{res}{\thenoWall}%
+    \setcounter{res}{\thenoTree}%
 }
 
 \newcommand{\setSpawn}{
@@ -59,15 +59,15 @@
 }
 
 \newcommand{\tryMove}[3]{%
-    \ifnum \thenoWall = 1
+    \ifnum \thenoTree = 1
         \move{#1}{#2}{#3}%
     \else
         \move{0}{0}{#3}%
     \fi
 }
 % \newcommand{\tryMove}[2]{%
-%     % \tryWall{#1}{#2}%
-%     \ifnum \thenoWall = 1
+%     % \tryTree{#1}{#2}%
+%     \ifnum \thenoTree = 1
 %         \move{#1}{#2}{\theworld}%
 %     \else
 %         \move{0}{0}{\theworld}%
